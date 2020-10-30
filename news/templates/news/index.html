@@ -3,21 +3,52 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: rgb(179, 197, 199);
+        }
+        h1{
+            color: #030303;
+        }
+        .card{
+            box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card:hover { 
+            box-shadow: 0 2px 5px 0  
+            rgba(0, 0, 0, 0.5), 0  
+            2px 10px 0 rgba(0, 0, 0, 1); 
+        } 
+        .pointer { 
+            cursor: pointer; 
+        }
+    </style>
 </head>
 <body>
-    <div class="jumbotron">
-        <center><h1>On the spot</h1>
-           <a href="/" class="btn btn-danger">Refresh News</a>
+    <div class="jumbotron" style="background-color: #e5e5e5;">
+        <center>
+            <img src="/static/logo.svg" alt="On the spot">
+            <br />
+            <a href="/" class="btn btn-warning mt-4">Refresh News</a>
         </form>
     </center>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-6">
-                    <h3 class="text-centre">News from Kathmandu Post {{news.detail}}</h3>
-                    {% for headline, detail, link in news  %}
-                        <h3>{{headline}}</h3>
-                    {% endfor %}
+        <h1 class="text-center mb-4 mt-4">News from Kathmandu Post {{news.detail}}</h1>
+            {% for headline, detail, author, link in news  %}
+                <div class="card pointer">
+                    <div class="card-header">
+                        <a href="{{link}}"><h4>{{headline}}</h4></a>
+                    </div>
+                    <div class="card-body">
+                        <span>{{author}}</span>
+                        <hr/>
+                        <p class="card-text lead">{{detail}}...</p>
+                        <a href="{{link}}" class="btn btn-primary">View post</a>
+                    </div>
+                </div>
+                <br/>
+            {% endfor %}
                     <br>
             </div>
         </div>
